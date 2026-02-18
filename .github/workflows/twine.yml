@@ -1,0 +1,28 @@
+name: Publicar VecMath no PyPI
+
+on:
+  workflow_dispatch:  # roda manualmente pelo GitHub
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12  # pode mudar para 3.11 se quiser
+
+      - name: Instalar dependências
+        run: pip install --upgrade pip setuptools wheel twine
+
+      - name: Build package
+        run: python setup.py sdist bdist_wheel
+
+      - name: Publicar no PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}  # aqui vai o token
+        run: twine upload dist/*
