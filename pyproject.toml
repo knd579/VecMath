@@ -1,0 +1,8 @@
+[project]
+name = "vecmath"
+version = "0.1"
+description = "A compact math library with vector operations, trigonometry, and handy utilities."
+authors = [
+    { name = "Kennedy Ruiz", email = "kennedyruiz.dev@gmail.com" }
+]
+license = { text = "MIT" }
